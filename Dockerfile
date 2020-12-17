@@ -1,4 +1,6 @@
-FROM openjdk:8
-EXPOSE 8080
-ADD target/DevOps.jar DevOps.jar
-ENTRYPOINT ["java","-jar","/DevOps.jar"]
+FROM ubuntu
+RUN apt-get update
+RUN apt-get -y install apache2
+ADD . /var/www/html
+ENTRYPOINT apachectl -D FOREGROUND
+ENV name DevOps
